@@ -1,0 +1,21 @@
+{
+  "name": "rewear-circular-atelier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rewear — Circular Textile Studio Web Platform",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'Static build ready'"
+  },
+  "keywords": [
+    "rewear",
+    "circular-atelier",
+    "textile",
+    "upcycled-fashion"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}

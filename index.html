@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewear — Circular Textile Studio | Turn Old Clothes into Mats, Sheets & Bags (₹200 - ₹1000)</title>
+  <meta name="description" content="Rewear transforms your old worn-out t-shirts, jeans, and shirts into handcrafted floor mats, luxury patchwork bed sheets, and everyday tote bags. Transparent pricing between ₹200 - ₹1000 with free doorstep pickup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="rewear-app evening-theme">
+  <!-- WebGL Evening Sunset Shader Background Canvas -->
+  <canvas id="c" class="shader-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Warm Sunset Overlay & Atmospheric Vignette -->
+  <div class="shader-atmosphere" aria-hidden="true"></div>
+
+  <!-- Main Site Header with Translucent Golden-Amber Glassmorphic Navigation -->
+  <header class="site-header" id="top-nav">
+    <div class="nav-container">
+      <!-- Clean, Professional Luxury Circular Atelier Brandmark -->
+      <a href="#hero" class="brand-link" aria-label="Rewear Circular Atelier">
+        <div class="brand-logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" class="atelier-brand-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="threadSunsetGrad" x1="4" y1="4" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F6CA78"/>
+                <stop offset="50%" stop-color="#E88038"/>
+                <stop offset="100%" stop-color="#CF5D36"/>
+              </linearGradient>
+              <linearGradient id="innerLoopGrad" x1="12" y1="12" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FAF6F0"/>
+                <stop offset="100%" stop-color="#F2A444"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="40" height="40" rx="12" fill="#18120D" stroke="rgba(240, 160, 75, 0.3)" stroke-width="1.2"/>
+            <!-- Elegant Precision Infinity Textile Ribbon Loop -->
+            <path d="M14 27C14 22 18 17 22 17C26 17 30 13 30 9C30 5.5 26.5 4 22 7C17.5 10 14 15 14 27Z" fill="url(#threadSunsetGrad)" fill-opacity="0.15"/>
+            <path d="M13 26C13 20.8 17.2 17 22 17C26.8 17 31 12.8 31 8" stroke="url(#threadSunsetGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M13 18C13 23.2 17.2 27 22 27C26.8 27 31 31.2 31 36" stroke="url(#threadSunsetGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="13" cy="18" r="3.2" stroke="url(#innerLoopGrad)" stroke-width="2" fill="#18120D"/>
+            <circle cx="31" cy="26" r="3.2" stroke="url(#innerLoopGrad)" stroke-width="2" fill="#18120D"/>
+            <!-- Tailor's Golden Alignment Stitch -->
+            <path d="M22 13V31" stroke="#F7C86E" stroke-width="1.4" stroke-dasharray="2 3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">REWEAR</span>
+          <span class="brand-badge">CIRCULAR ATELIER</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <!-- Direct Jump to The Cycle requested by user -->
+        <a href="#the-cycle" class="nav-btn-link">
+          <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+          </svg>
+          The Cycle
+        </a>
+        <a href="#order-section" class="nav-btn">Creations</a>
+        <a href="#innovations" class="nav-btn">Innovations</a>
+        <button type="button" class="nav-btn" data-target="transformations">Transformations</button>
+        <button type="button" class="nav-btn" data-target="before-after">Before &amp; After</button>
+        <button type="button" class="nav-btn" data-target="impact">Eco Savings</button>
+        <button type="button" class="nav-btn" id="nav-about-btn" data-target="about-us">About Us</button>
+      </nav>
+
+      <!-- Action Cluster: Single Order CTA + Single Framed Auth Button -->
+      <div class="nav-actions">
+        <!-- Primary Order Button -->
+        <button type="button" class="btn-order-primary" id="nav-order-btn" aria-label="Start Upcycle Order">
+          <span class="btn-glow-ring"></span>
+          <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+          <span class="btn-text">Order Now</span>
+        </button>
+
+        <!-- Single Unified Framed Auth/Account Element as Silhouette -->
+        <div class="framed-auth-container" id="nav-auth-wrap">
+          <button type="button" class="btn-login-framed" id="nav-login-btn" aria-label="Sign In or User Account" title="Sign In">
+            <span class="framed-auth-icon-tile">
+              <svg viewBox="0 0 24 24" class="auth-silhouette-icon" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2.5a4.75 4.75 0 100 9.5 4.75 4.75 0 000-9.5zM4.75 19.25a7.25 7.25 0 0114.5 0c0 .414-.336.75-.75.75H5.5a.75.75 0 01-.75-.75z" clip-rule="evenodd"/>
+              </svg>
+              <span class="auth-active-dot" id="auth-active-dot" style="display: none;"></span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button type="button" class="mobile-toggle-btn" id="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-nav-links">
+        <a href="#the-cycle" class="mobile-nav-link">The Cycle (6 Stages)</a>
+        <a href="#order-section" class="mobile-nav-link">Creations &amp; Pricing</a>
+        <a href="#innovations" class="mobile-nav-link">Atelier Innovations</a>
+        <button type="button" class="mobile-nav-link" data-target="transformations">Transformations</button>
+        <button type="button" class="mobile-nav-link" data-target="before-after">Before &amp; After</button>
+        <button type="button" class="mobile-nav-link" data-target="impact">Eco Impact</button>
+        <button type="button" class="mobile-nav-link" data-target="about-us">About Us</button>
+        <button type="button" class="mobile-nav-link" id="mobile-login-link">Sign In / Account</button>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <button type="button" class="btn-order-primary w-full" id="mobile-order-btn">Start Remake Order (₹200 - ₹1000)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Website Content Container -->
+  <main class="site-main">
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <!-- Live Evening Status Badge -->
+        <div class="hero-pill-badge">
+          <span class="pulse-dot"></span>
+          <span class="pill-text">CIRCULAR TEXTILE STUDIO &bull; 48,200+ OLD CLOTHES REMADE</span>
+        </div>
+
+        <!-- The Interactive Central Wordmark: Words That Get Worn Cloth Holes Directly on Cursor Touch -->
+        <div class="hero-wordmark-container" id="hero-wordmark-container">
+          <div class="wordmark-interactive-stage" id="wordmark-interactive-stage">
+            <canvas id="wordmark-canvas" class="wordmark-canvas"></canvas>
+            <h1 class="visually-hidden">REWEAR — Circular Textile Studio</h1>
+          </div>
+          <div class="wordmark-micro-caption">
+            <span class="micro-dot"></span>
+            <span>Glide cursor or touch across the letters of <strong>REWEAR</strong> to part the worn cloth weave &bull; Click letters to add Sashiko gold repair</span>
+          </div>
+        </div>
+
+        <!-- Main Headline -->
+        <h2 class="hero-title">
+          Send Your Old Clothes.<br>
+          We Turn Them into <em class="gradient-text">Mats, Bed Sheets &amp; Tote Bags</em>.
+        </h2>
+
+        <!-- Mission / Moto Description -->
+        <p class="hero-subtitle">
+          Don't throw away old t-shirts, worn denim, or cotton shirts. Give them a second life. We collect your garments from your doorstep and handcraft them into <strong>handwoven floor mats</strong>, <strong>luxury patchwork bed sheets</strong>, and <strong>durable everyday carry bags</strong>. 
+          Affordable artisan pricing starting from just <strong>₹249 to ₹899</strong>.
+        </p>
+
+        <!-- Hero Action Buttons -->
+        <div class="hero-cta-group">
+          <a href="#order-section" class="btn-hero-primary">
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+            Order Remake (₹200 - ₹1000)
+            <span class="btn-highlight-shine"></span>
+          </a>
+          
+          <button type="button" class="btn-hero-secondary" id="hero-explore-btn">
+            <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+            See Before &amp; After Transformation
+          </button>
+        </div>
+
+        <!-- Trust Statistics Bar with Indian Rupees and Metrics -->
+        <div class="hero-stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">₹249 - ₹899</div>
+            <div class="stat-label">Transparent Pricing</div>
+            <div class="stat-sub">Strictly under ₹1000 per piece</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100% Cotton</div>
+            <div class="stat-label">Zero Virgin Fabric</div>
+            <div class="stat-sub">100% made from your old garments</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">Free Pickup</div>
+            <div class="stat-label">Doorstep Collection</div>
+            <div class="stat-sub">Courier picks up from your home</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">5-7 Days</div>
+            <div class="stat-label">Handcrafted Delivery</div>
+            <div class="stat-sub">Sanitized &amp; reinforced stitching</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- USER REQUESTED: THE COMPLETE CIRCULAR CYCLE (COLLECT -> SORT -> CLEAN -> REUSE -> MAKE -> SELL) -->
+    <!-- ========================================================================= -->
+    <section class="section cycle-section" id="the-cycle">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-tag">CIRCULAR TEXTILE LIFECYCLE &bull; ZERO FABRIC TO LANDFILL</span>
+          <h2 class="section-title">The Complete Rewear Cycle</h2>
+          <p class="section-desc">
+            We don't burn, shred, or downcycle. Every garment entrusted to Rewear moves through this transparent 6-stage circular loop from your wardrobe back into modern everyday life.
+          </p>
+        </div>
+
+        <!-- 6 Connected Cycle Steps Grid -->
+        <div class="cycle-timeline-grid">
+          <!-- Step 1: Collect -->
+          <div class="cycle-step-card">
+            <div class="cycle-step-header">
+              <span class="cycle-step-num">01</span>
+              <span class="cycle-step-icon">📦</span>
+            </div>
+            <h3 class="cycle-step-title">Collect</h3>
+            <p class="cycle-step-desc">
+              Free doorstep courier pickup scheduled directly from your home across India. We collect your worn t-shirts, faded denim jeans, flannels, and cotton shirts.
+            </p>
+            <div class="cycle-step-badge">Doorstep Collection</div>
+          </div>
+
+          <!-- Step 2: Sort -->
+          <div class="cycle-step-card">
+            <div class="cycle-step-header">
+              <span class="cycle-step-num">02</span>
+              <span class="cycle-step-icon">🔬</span>
+            </div>
+            <h3 class="cycle-step-title">Sort</h3>
+            <p class="cycle-step-desc">
+              Smart optical fiber classification. Garments are graded by fabric density (GSM), tensile strength, cotton ratio, and curated color harmonies for aesthetic pairing.
+            </p>
+            <div class="cycle-step-badge">AI Fiber Grading</div>
+          </div>
+
+          <!-- Step 3: Clean -->
+          <div class="cycle-step-card">
+            <div class="cycle-step-header">
+              <span class="cycle-step-num">03</span>
+              <span class="cycle-step-icon">✨</span>
+            </div>
+            <h3 class="cycle-step-title">Clean</h3>
+            <p class="cycle-step-desc">
+              100% waterless hospital-grade ozone sterilization &amp; high-temperature steam deodorization. Destroys 99.9% of bacteria and allergens while saving thousands of liters of water.
+            </p>
+            <div class="cycle-step-badge">Waterless Ozone</div>
+          </div>
+
+          <!-- Step 4: Reuse -->
+          <div class="cycle-step-card">
+            <div class="cycle-step-header">
+              <span class="cycle-step-num">04</span>
+              <span class="cycle-step-icon">✂️</span>
+            </div>
+            <h3 class="cycle-step-title">Reuse</h3>
+            <p class="cycle-step-desc">
+              Preserving original craftsmanship details. Authentic denim pockets, heavy brass hardware, graphic cuts, and buttons are carefully unpicked and integrated intact.
+            </p>
+            <div class="cycle-step-badge">Detail Preservation</div>
+          </div>
+
+          <!-- Step 5: Make -->
+          <div class="cycle-step-card">
+            <div class="cycle-step-header">
+              <span class="cycle-step-num">05</span>
+              <span class="cycle-step-icon">🪡</span>
+            </div>
+            <h3 class="cycle-step-title">Make</h3>
+            <p class="cycle-step-desc">
+              Master artisan tailoring on heritage handlooms. Hand-braided floor mats, quilted patchwork bedsheets, cushion covers, pet beds, and reinforced tote bags.
+            </p>
+            <div class="cycle-step-badge">Artisan Handcrafted</div>
+          </div>
+
+          <!-- Step 6: Sell / Return -->
+          <div class="cycle-step-card">
+            <div class="cycle-step-header">
+              <span class="cycle-step-num">06</span>
+              <span class="cycle-step-icon">🔄</span>
+            </div>
+            <h3 class="cycle-step-title">Sell / Return</h3>
+            <p class="cycle-step-desc">
+              Your finished heirloom creation is delivered back to your doorstep, or certified artisan editions are cataloged for purchase in our circular community marketplace.
+            </p>
+            <div class="cycle-step-badge">Doorstep Return &amp; Market</div>
+          </div>
+        </div>
+
+        <!-- Cycle Bottom Reassurance Bar -->
+        <div class="cycle-summary-banner">
+          <div class="cycle-flow-pill">
+            <span>Collect</span> &rarr; <span>Sort</span> &rarr; <span>Clean</span> &rarr; <span>Reuse</span> &rarr; <span>Make</span> &rarr; <span>Sell / Return</span>
+          </div>
+          <p class="cycle-banner-sub">100% Circular &bull; Zero Virgin Fabric &bull; Guaranteed Tailoring between ₹200 – ₹1000</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- USER REQUESTED: DEDICATED ORDER SECTION FOR MATS, SHEETS, BAGS, CUSHIONS & PET BEDS (₹200-1000) -->
+    <!-- ========================================================================= -->
+    <section class="section dedicated-order-section" id="order-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">DEDICATED REMAKE MENU &bull; PRICING IN RUPEES</span>
+          <h2 class="section-title">Change Old Clothes into Mats, Sheets, Bags, Cushions &amp; Pet Beds</h2>
+          <p class="section-desc">
+            See the exact number of old garments required for each transformation and our flat artisan tailoring fee (strictly kept between ₹200 and ₹1000). Free doorstep collection included!
+          </p>
+        </div>
+
+        <!-- The 3 Core Requested Items Grid (Mats, Sheets, Bags) -->
+        <div class="remake-items-grid">
+          <!-- 1. Handwoven Floor Mat / Rug -->
+          <article class="remake-card featured-amber" id="card-mat">
+            <div class="remake-badge">MOST POPULAR FOR TEES</div>
+            <div class="remake-img-box">
+              <img src="assets/upcycled_mat.jpg" alt="Circular Braided Floor Mat made from old t-shirts" class="remake-img" loading="lazy">
+              <div class="remake-tag-price">₹349</div>
+            </div>
+            <div class="remake-body">
+              <h3 class="remake-title">Handwoven Braided Floor Mat</h3>
+              <p class="remake-text">
+                Circular braided rug handwoven from cotton t-shirt strips and denim remnants. Soft, thick, machine-washable, and adds a cozy artisanal touch to any living room or bedroom.
+              </p>
+              
+              <!-- Exact Cloth Requirement Highlight Box -->
+              <div class="requirement-box">
+                <div class="req-title">Clothes You Need to Give:</div>
+                <div class="req-count">
+                  <span class="req-num">4 to 6</span>
+                  <span class="req-desc">Old T-Shirts, Tops or Cotton Kurti</span>
+                </div>
+                <div class="req-sub">&bull; Any colors / graphic prints &bull; Ripped tees welcome</div>
+              </div>
+
+              <div class="remake-spec-list">
+                <div class="spec-row">
+                  <span>Diameter Size:</span>
+                  <strong>3 Feet (36 inches) Circular</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Washable:</span>
+                  <strong>Machine Washable / Cold Gentle</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Tailoring Charge:</span>
+                  <strong class="price-highlight">₹349 (Fixed)</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn-select-order" data-preset="mat">
+                Order Floor Mat (₹349)
+              </button>
+            </div>
+          </article>
+
+          <!-- 2. Luxury Patchwork Bed Sheet & Quilt -->
+          <article class="remake-card featured-amber" id="card-sheet">
+            <div class="remake-badge">HEIRLOOM BEDROOM PIECE</div>
+            <div class="remake-img-box">
+              <img src="assets/patchwork_bedsheet.jpg" alt="Patchwork Bed Sheet made from shirts and flannels" class="remake-img" loading="lazy">
+              <div class="remake-tag-price">₹899</div>
+            </div>
+            <div class="remake-body">
+              <h3 class="remake-title">Patchwork Bed Sheet &amp; Quilt</h3>
+              <p class="remake-text">
+                Heirloom quilt blanket hand-pieced from soft cotton shirts, flannels, and linens with organic backing. Deep-sanitized, bio-softened, and quilted for durable warmth.
+              </p>
+              
+              <!-- Exact Cloth Requirement Highlight Box -->
+              <div class="requirement-box">
+                <div class="req-title">Clothes You Need to Give:</div>
+                <div class="req-count">
+                  <span class="req-num">8 to 10</span>
+                  <span class="req-desc">Old Shirts, Flannels, Kurtas or Sarees</span>
+                </div>
+                <div class="req-sub">&bull; Soft cotton / linen / flannel fabrics</div>
+              </div>
+
+              <div class="remake-spec-list">
+                <div class="spec-row">
+                  <span>Bed Sheet Size:</span>
+                  <strong>Queen / Double Bed (90" x 100")</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Backing Layer:</span>
+                  <strong>100% Breathable Organic Cotton</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Tailoring Charge:</span>
+                  <strong class="price-highlight">₹899 (Fixed)</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn-select-order" data-preset="sheet">
+                Order Bed Sheet (₹899)
+              </button>
+            </div>
+          </article>
+
+          <!-- 3. Heavyweight Everyday Tote & Shopping Bags -->
+          <article class="remake-card featured-amber" id="card-bag">
+            <div class="remake-badge">HIGH UTILITY CARRY</div>
+            <div class="remake-img-box">
+              <img src="assets/tote_bag.jpg" alt="Artisan Denim and Cotton Tote Bag" class="remake-img" loading="lazy">
+              <div class="remake-tag-price">₹249</div>
+            </div>
+            <div class="remake-body">
+              <h3 class="remake-title">Artisan Everyday Carry Tote Bag</h3>
+              <p class="remake-text">
+                Rugged tote handcrafted from old denim jeans and cotton shirt liners. Reinforced box joints, solid brass rivets, and durable shoulder straps built to carry books, groceries, and laptops.
+              </p>
+              
+              <!-- Exact Cloth Requirement Highlight Box -->
+              <div class="requirement-box">
+                <div class="req-title">Clothes You Need to Give:</div>
+                <div class="req-count">
+                  <span class="req-num">2 to 3</span>
+                  <span class="req-desc">Old T-Shirts OR 1 Pair of Worn Denim Jeans</span>
+                </div>
+                <div class="req-sub">&bull; Denim pants, jackets, or graphic tees</div>
+              </div>
+
+              <div class="remake-spec-list">
+                <div class="spec-row">
+                  <span>Bag Capacity:</span>
+                  <strong>18 Liters (Tested to 20 kg)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Handle Strap:</span>
+                  <strong>Reinforced Leather or Cotton Webbing</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Tailoring Charge:</span>
+                  <strong class="price-highlight">₹249 (Fixed)</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn-select-order" data-preset="tote">
+                Order Tote Bag (₹249)
+              </button>
+            </div>
+          </article>
+
+          <!-- 4. Patchwork Cushion Covers (Set of 2) - USER REQUESTED -->
+          <article class="remake-card featured-amber" id="card-cushion">
+            <div class="remake-badge">LIVING ROOM ACCENT</div>
+            <div class="remake-img-box">
+              <img src="assets/upcycled_cushion_covers.jpg" alt="Patchwork Cushion Covers made from old cotton shirts" class="remake-img" loading="lazy">
+              <div class="remake-tag-price">₹299</div>
+            </div>
+            <div class="remake-body">
+              <h3 class="remake-title">Patchwork Cushion Covers (Pair)</h3>
+              <p class="remake-text">
+                Luxury quilted square cushion slipcovers hand-pieced from upcycled shirts, flannels, and kurtas. Features hidden zip closures, French piped seams, and bio-softened cotton lining.
+              </p>
+              
+              <div class="requirement-box">
+                <div class="req-title">Clothes You Need to Give:</div>
+                <div class="req-count">
+                  <span class="req-num">3 to 4</span>
+                  <span class="req-desc">Old Shirts, Kurtas, Tops or Flannels</span>
+                </div>
+                <div class="req-sub">&bull; Any color combinations &bull; Soft fabrics preferred</div>
+              </div>
+
+              <div class="remake-spec-list">
+                <div class="spec-row">
+                  <span>Cover Dimensions:</span>
+                  <strong>16" x 16" (Standard Cushion)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Closure Type:</span>
+                  <strong>Concealed YKK Zip Fastener</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Tailoring Charge:</span>
+                  <strong class="price-highlight">₹299 for Pair (Fixed)</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn-select-order" data-preset="cushion">
+                Order Cushion Covers (₹299)
+              </button>
+            </div>
+          </article>
+
+          <!-- 5. Upcycled Cozy Pet Bed - USER REQUESTED -->
+          <article class="remake-card featured-amber" id="card-petbed">
+            <div class="remake-badge">PET COMFORT LOUNGE</div>
+            <div class="remake-img-box">
+              <img src="assets/upcycled_pet_bed.jpg" alt="Cozy Upcycled Pet Bed made from denim and flannel" class="remake-img" loading="lazy">
+              <div class="remake-tag-price">₹599</div>
+            </div>
+            <div class="remake-body">
+              <h3 class="remake-title">Upcycled Cozy Pet Bed</h3>
+              <p class="remake-text">
+                Heavy-duty orthopedic pet lounge bed crafted with rugged denim outer walls and quilted flannel inner cushioning. Stuffed with sanitized recycled cotton shredding. Machine washable.
+              </p>
+              
+              <div class="requirement-box">
+                <div class="req-title">Clothes You Need to Give:</div>
+                <div class="req-count">
+                  <span class="req-num">6 to 8</span>
+                  <span class="req-desc">Old T-Shirts, Denim Jeans or Blankets</span>
+                </div>
+                <div class="req-sub">&bull; Heavy cottons &amp; denim jeans are ideal</div>
+              </div>
+
+              <div class="remake-spec-list">
+                <div class="spec-row">
+                  <span>Bed Size:</span>
+                  <strong>24" x 18" (Small to Medium Pets)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Core Cushion:</span>
+                  <strong>Recycled Shredded Textile Core</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Tailoring Charge:</span>
+                  <strong class="price-highlight">₹599 (Fixed)</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn-select-order" data-preset="petbed">
+                Order Pet Bed (₹599)
+              </button>
+            </div>
+          </article>
+
+          <!-- 6. Custom T-Shirt Everyday Bag - USER REQUESTED -->
+          <article class="remake-card featured-amber" id="card-tshirtbag">
+            <div class="remake-badge">GRAPHIC TEE MEMORY</div>
+            <div class="remake-img-box">
+              <img src="assets/custom_tshirt_bag.jpg" alt="Custom T-Shirt Sling and Tote Bag" class="remake-img" loading="lazy">
+              <div class="remake-tag-price">₹229</div>
+            </div>
+            <div class="remake-body">
+              <h3 class="remake-title">Custom Graphic T-Shirt Bag</h3>
+              <p class="remake-text">
+                Don't lose your favorite band or college graphic tees! We cut and reconstruct them into reinforced market totes and crossbody bags with heavy cotton webbing handles and reinforced base.
+              </p>
+              
+              <div class="requirement-box">
+                <div class="req-title">Clothes You Need to Give:</div>
+                <div class="req-count">
+                  <span class="req-num">2 to 3</span>
+                  <span class="req-desc">Old Graphic / Plain T-Shirts</span>
+                </div>
+                <div class="req-sub">&bull; We highlight your favorite front graphics</div>
+              </div>
+
+              <div class="remake-spec-list">
+                <div class="spec-row">
+                  <span>Bag Volume:</span>
+                  <strong>14 Liters (Heavyweight Stitched)</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Strap Style:</span>
+                  <strong>Comfort Crossbody &amp; Hand Webbing</strong>
+                </div>
+                <div class="spec-row">
+                  <span>Tailoring Charge:</span>
+                  <strong class="price-highlight">₹229 (Fixed)</strong>
+                </div>
+              </div>
+
+              <button type="button" class="btn-select-order" data-preset="tshirtbag">
+                Order T-Shirt Bag (₹229)
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Interactive Instant Remake Order Calculator & Doorstep Booking Box -->
+        <div class="order-calculator-card" id="quick-order-panel">
+          <div class="calculator-header">
+            <div class="calc-tag">INSTANT REMAKE BOOKING</div>
+            <h3 class="calc-heading">Select Your Desired Items &amp; Calculate Exact Cloth Count</h3>
+            <p class="calc-sub">Choose what you want to make from your old clothes. See your required clothes and exact price in Rupees.</p>
+          </div>
+
+          <div class="calc-interactive-container">
+            <!-- Left: Item Pickers -->
+            <div class="calc-pickers">
+              <!-- Item 1: Floor Mat -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Braided Floor Mat / Rug (3ft)</strong>
+                  <span>Requires 4-6 T-shirts &bull; ₹349 each</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="mat">-</button>
+                  <span class="qty-val" id="qty-mat">1</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="mat">+</button>
+                </div>
+              </div>
+
+              <!-- Item 2: Bed Sheet Quilt -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Patchwork Bed Sheet Quilt (Queen)</strong>
+                  <span>Requires 8-10 Shirts &bull; ₹899 each</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="sheet">-</button>
+                  <span class="qty-val" id="qty-sheet">0</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="sheet">+</button>
+                </div>
+              </div>
+
+              <!-- Item 3: Tote Bag -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Artisan Denim Tote Bag</strong>
+                  <span>Requires 2-3 T-shirts / 1 Jeans &bull; ₹249 each</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="tote">-</button>
+                  <span class="qty-val" id="qty-tote">1</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="tote">+</button>
+                </div>
+              </div>
+
+              <!-- Item 4: Cushion Covers (NEW) -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Patchwork Cushion Covers (Pair)</strong>
+                  <span>Requires 3-4 Shirts &bull; ₹299 pair</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="cushion">-</button>
+                  <span class="qty-val" id="qty-cushion">0</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="cushion">+</button>
+                </div>
+              </div>
+
+              <!-- Item 5: Upcycled Pet Bed (NEW) -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Upcycled Cozy Pet Bed</strong>
+                  <span>Requires 6-8 T-shirts / Jeans &bull; ₹599 each</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="petbed">-</button>
+                  <span class="qty-val" id="qty-petbed">0</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="petbed">+</button>
+                </div>
+              </div>
+
+              <!-- Item 6: Custom T-Shirt Bag (NEW) -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Custom Graphic T-Shirt Bag</strong>
+                  <span>Requires 2-3 T-shirts &bull; ₹229 each</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="tshirtbag">-</button>
+                  <span class="qty-val" id="qty-tshirtbag">0</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="tshirtbag">+</button>
+                </div>
+              </div>
+
+              <!-- Item 7: Grocery Shopping Bag -->
+              <div class="picker-row">
+                <div class="picker-info">
+                  <strong>Grocery Market Shopping Bag</strong>
+                  <span>Requires 3-4 T-shirts &bull; ₹289 each</span>
+                </div>
+                <div class="picker-controls">
+                  <button type="button" class="qty-btn" data-action="dec" data-item="shopping">-</button>
+                  <span class="qty-val" id="qty-shopping">0</span>
+                  <button type="button" class="qty-btn" data-action="inc" data-item="shopping">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Order Live Summary & Booking Form -->
+            <div class="calc-summary-panel">
+              <div class="summary-top-card">
+                <div class="calc-metric-box">
+                  <span class="metric-title">Old Clothes Needed from You:</span>
+                  <strong class="metric-highlight-amber" id="total-clothes-needed">6 to 9 Garments</strong>
+                </div>
+
+                <div class="calc-metric-box">
+                  <span class="metric-title">Doorstep Courier Pickup:</span>
+                  <strong class="metric-free">FREE (Included)</strong>
+                </div>
+
+                <div class="calc-total-box">
+                  <span>Total Tailoring Charge:</span>
+                  <strong class="total-rupees" id="total-charge-rupees">₹598</strong>
+                </div>
+                <div class="price-guarantee-note">&check; Guaranteed between ₹200 - ₹1000 per creation</div>
+              </div>
+
+              <!-- Clean Minimal Luxury Order Form (Zero pre-filled info) -->
+              <form id="quick-order-form" class="quick-booking-form" novalidate>
+                <div class="checkout-fields-cluster">
+                  <div class="form-row-compact">
+                    <div class="input-field-wrap">
+                      <label for="quick-customer-name" class="field-label-micro">Your Full Name <span class="required-star">*</span></label>
+                      <input type="text" id="quick-customer-name" class="compact-input" placeholder="e.g. Aarav Sharma" required autocomplete="name">
+                    </div>
+                    <div class="input-field-wrap">
+                      <label for="quick-customer-phone" class="field-label-micro">Phone / WhatsApp Number <span class="required-star">*</span></label>
+                      <input type="tel" id="quick-customer-phone" class="compact-input" placeholder="10-digit mobile number" required autocomplete="tel">
+                    </div>
+                  </div>
+
+                  <div class="input-field-wrap">
+                    <label for="quick-customer-address" class="field-label-micro">Doorstep Pickup &amp; Delivery Address <span class="required-star">*</span></label>
+                    <input type="text" id="quick-customer-address" class="compact-input w-full" placeholder="House/Flat No., Building, Landmark, City &amp; PIN code" required autocomplete="street-address">
+                  </div>
+
+                  <!-- Selectable Mode of Payment Grid -->
+                  <div class="payment-mode-section">
+                    <label class="field-label-micro">Select Mode of Payment <span class="required-star">*</span></label>
+                    <div class="payment-modes-grid">
+                      <div class="payment-mode-pill active" data-mode="Cash on Pickup / Delivery (COD)">
+                        <input type="radio" name="quick_payment_mode" value="Cash on Pickup / Delivery (COD)" checked>
+                        <span class="pay-pill-icon">💵</span>
+                        <div class="pay-pill-body">
+                          <strong>Cash on Pickup (COD)</strong>
+                          <small>Pay courier in cash</small>
+                        </div>
+                        <span class="pill-check-indicator">&check;</span>
+                      </div>
+                      <div class="payment-mode-pill" data-mode="UPI / QR Code on Doorstep">
+                        <input type="radio" name="quick_payment_mode" value="UPI / QR Code on Doorstep">
+                        <span class="pay-pill-icon">📱</span>
+                        <div class="pay-pill-body">
+                          <strong>UPI / QR Code</strong>
+                          <small>GPay, PhonePe, Paytm</small>
+                        </div>
+                        <span class="pill-check-indicator">&check;</span>
+                      </div>
+                      <div class="payment-mode-pill" data-mode="Online Card / Net Banking">
+                        <input type="radio" name="quick_payment_mode" value="Online Card / Net Banking">
+                        <span class="pay-pill-icon">💳</span>
+                        <div class="pay-pill-body">
+                          <strong>Card / Net Banking</strong>
+                          <small>Instant secure payment</small>
+                        </div>
+                        <span class="pill-check-indicator">&check;</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-confirm-remake" id="btn-quick-order-submit">
+                  <span class="btn-shine-bar"></span>
+                  <span class="btn-text-main" id="quick-submit-text">Place Upcycle Order &amp; Book Pickup (Pay ₹598)</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Before & After Transformation Slider Section -->
+    <section class="section before-after-section" id="before-after">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">TRANSFORMATION ALCHEMY</span>
+          <h2 class="section-title">See Old Clothes Reborn in Real-Time</h2>
+          <p class="section-desc">Drag the interactive slider below to see how a bundle of old discarded graphic t-shirts and worn vintage denim is deconstructed and stitched into a high-capacity shopping tote.</p>
+        </div>
+
+        <!-- Interactive Comparison Slider Container -->
+        <div class="comparison-card">
+          <div class="comparison-stage" id="comparison-stage">
+            <!-- Background Image: AFTER (Upcycled Bag) -->
+            <img src="assets/after_shopping_bag.jpg" alt="After: Handcrafted Designer Shopping Bag made from upcycled t-shirts" class="comparison-img img-after" loading="eager">
+            <div class="comparison-badge badge-after">AFTER: Upcycled Shopping Bag (Cost ₹289)</div>
+
+            <!-- Foreground Clipped Image: BEFORE (Old Clothes) -->
+            <div class="comparison-clip" id="comparison-clip" style="width: 50%;">
+              <img src="assets/before_old_clothes.jpg" alt="Before: Stack of old worn-out graphic t-shirts and denim jeans" class="comparison-img img-before" id="before-img-target" loading="eager">
+              <div class="comparison-badge badge-before">BEFORE: 4 Old T-Shirts &amp; Worn Jeans</div>
+            </div>
+
+            <!-- Draggable Divider Line & Knob -->
+            <div class="comparison-handle" id="comparison-handle" style="left: 50%;">
+              <div class="handle-line"></div>
+              <div class="handle-knob" aria-label="Drag slider to compare before and after">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transformation Insights Bar -->
+          <div class="comparison-details">
+            <div class="detail-item">
+              <div class="detail-icon-wrap">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg>
+              </div>
+              <div>
+                <strong>Garments Consumed:</strong> 4 Graphic T-Shirts (Rockfest, Camp 84)
+              </div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-icon-wrap">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              </div>
+              <div>
+                <strong>Artisan Charge:</strong> ₹289 &bull; Reusable for 1,000+ Market Trips
+              </div>
+            </div>
+            <div class="detail-item">
+              <button type="button" class="btn-sm-order" onclick="document.getElementById('order-section').scrollIntoView({behavior:'smooth'})">
+                Order Shopping Bag
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- USER REQUESTED: ATELIER INNOVATIONS & UNIQUE FEATURES -->
+    <!-- 1. Clothing Story QR (Tell audience we have this feature, living cloth memory) -->
+    <!-- 2. Multi-Tier Rewear Rewards -->
+    <!-- 3. Smart Sorting Algorithm -->
+    <!-- 4. Memory to Product (Sentimental Archiving) -->
+    <!-- ========================================================================= -->
+    <section class="section innovations-section" id="innovations">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-tag">ATELIER INNOVATIONS &bull; PROPRIETARY TECHNOLOGY</span>
+          <h2 class="section-title">Unique Rewear Features</h2>
+          <p class="section-desc">
+            We blend ancient textile heritage with modern circular engineering, intelligent fabric matching, and emotional memory preservation.
+          </p>
+        </div>
+
+        <div class="innovations-grid">
+          <!-- 1. Clothing Story QR -->
+          <div class="innovation-card featured-gold">
+            <div class="innovation-badge">SEWN-IN FABRIC QR LABEL</div>
+            <div class="innovation-icon-box">🏷️</div>
+            <h3 class="innovation-title">Clothing Story QR</h3>
+            <p class="innovation-desc">
+              Every handcrafted piece comes with a micro-woven fabric QR tag sewn permanently into its hem. When you scan it with any smartphone, it tells the living story of the cloth:
+            </p>
+            <div class="qr-passport-preview">
+              <div class="qr-header-row">
+                <span class="qr-tag-label">Rewear Digital Cloth Passport</span>
+                <span class="qr-status-live">&bull; Verified</span>
+              </div>
+              <ul class="qr-story-points">
+                <li><strong>What it was:</strong> 3 Rockfest Graphic T-Shirts (2018) + 1 Vintage Denim Pant</li>
+                <li><strong>What it is now:</strong> Artisan Everyday Carry Crossbody Tote</li>
+                <li><strong>How it was made:</strong> Ozone sterilized, strip-cut &amp; hand-pieced by Master Tailor Mohan</li>
+                <li><strong>Eco Footprint:</strong> 2,800 Liters of fresh water saved from virgin cotton dyeing</li>
+              </ul>
+              <div class="qr-footer-note">A permanent keepsake memory carried on the garment forever.</div>
+            </div>
+          </div>
+
+          <!-- 2. Multi-Tier Rewards -->
+          <div class="innovation-card">
+            <div class="innovation-badge">CIRCULAR LOYALTY</div>
+            <div class="innovation-icon-box">🏆</div>
+            <h3 class="innovation-title">Multi-Tier Rewear Rewards</h3>
+            <p class="innovation-desc">
+              Earn circular <strong>Thread Points</strong> for every garment you divert from landfills. Progress across four artisan tiers to unlock tailoring subsidies and privileges:
+            </p>
+            <div class="rewards-tiers-list">
+              <div class="tier-item">
+                <span class="tier-medal bronze">🥉</span>
+                <div>
+                  <strong>Spun Thread (Tier 1)</strong>
+                  <small>1-10 Garments diverted &bull; 5% off tailoring fees</small>
+                </div>
+              </div>
+              <div class="tier-item">
+                <span class="tier-medal silver">🥈</span>
+                <div>
+                  <strong>Loom Weaver (Tier 2)</strong>
+                  <small>11-25 Garments diverted &bull; Free express doorstep pickup</small>
+                </div>
+              </div>
+              <div class="tier-item">
+                <span class="tier-medal gold">🥇</span>
+                <div>
+                  <strong>Master Artisan (Tier 3)</strong>
+                  <small>26-50 Garments &bull; ₹300 remake credit &bull; Priority queue</small>
+                </div>
+              </div>
+              <div class="tier-item">
+                <span class="tier-medal platinum">💎</span>
+                <div>
+                  <strong>Circular Legend (Tier 4)</strong>
+                  <small>50+ Garments &bull; Complimentary custom monogramming &amp; VIP drops</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Smart Sorting Algo -->
+          <div class="innovation-card">
+            <div class="innovation-badge">PROPRIETARY TEXTILE AI</div>
+            <div class="innovation-icon-box">⚡</div>
+            <h3 class="innovation-title">Smart Sorting Algorithm</h3>
+            <p class="innovation-desc">
+              Zero guessing, zero fabric waste. Our proprietary optical textile algorithm evaluates incoming clothing across key metallurgical and fiber metrics:
+            </p>
+            <div class="algo-specs-grid">
+              <div class="algo-metric">
+                <span class="metric-num">GSM</span>
+                <span class="metric-label">Weight &amp; Thickness</span>
+                <small>Routes heavy 380+ GSM denim to structured bags &amp; floor mats</small>
+              </div>
+              <div class="algo-metric">
+                <span class="metric-num">TENSILE</span>
+                <span class="metric-label">Yarn Elasticity</span>
+                <small>Matches high-stretch jerseys to braided yarn cords</small>
+              </div>
+              <div class="algo-metric">
+                <span class="metric-num">HARMONY</span>
+                <span class="metric-label">Color Matching</span>
+                <small>Coordinates warm terracotta &amp; indigo dyes for quilts</small>
+              </div>
+              <div class="algo-metric">
+                <span class="metric-num">ZERO-CUT</span>
+                <span class="metric-label">Pattern Geometry</span>
+                <small>Calculates 98.4% geometric fabric utilization</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Memory to Product -->
+          <div class="innovation-card">
+            <div class="innovation-badge">SENTIMENTAL ARCHIVING</div>
+            <div class="innovation-icon-box">🧵</div>
+            <h3 class="innovation-title">Memory to Product</h3>
+            <p class="innovation-desc">
+              Clothing is deeply emotional. We don't just recycle fabric — we immortalize memories. Transform your most cherished sentimental clothes into timeless family heirlooms:
+            </p>
+            <div class="memory-categories-list">
+              <div class="memory-pill">
+                <span class="pill-dot"></span>
+                <strong>Baby's First Years:</strong>
+                <span>Preserve outgrown infant onesies &amp; rompers as a soft nursery quilt</span>
+              </div>
+              <div class="memory-pill">
+                <span class="pill-dot"></span>
+                <strong>Life Milestones &amp; Concerts:</strong>
+                <span>Favorite band tees &amp; college hoodies remade into everyday bags</span>
+              </div>
+              <div class="memory-pill">
+                <span class="pill-dot"></span>
+                <strong>Generational Heirlooms:</strong>
+                <span>Grandparent's vintage cotton shirts &amp; flannels crafted into cushion pairs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transformations & Products Catalog Section -->
+    <section class="section catalog-section" id="transformations">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-tag">CATALOG OF UPCYCLED CREATIONS</span>
+          <h2 class="section-title">Explore All Available Transformations</h2>
+          <p class="section-desc">Every piece is sanitized with medical ozone, hand-cut to zero-waste templates, and double-stitched. Transparent charges between ₹200 and ₹1000.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs-bar" role="tablist">
+          <button type="button" class="filter-tab active" data-filter="all" role="tab">All Items</button>
+          <button type="button" class="filter-tab" data-filter="mats" role="tab">Floor Mats</button>
+          <button type="button" class="filter-tab" data-filter="sheets" role="tab">Bed Sheets</button>
+          <button type="button" class="filter-tab" data-filter="totes" role="tab">Tote Bags</button>
+          <button type="button" class="filter-tab" data-filter="cushions" role="tab">Cushion Covers</button>
+          <button type="button" class="filter-tab" data-filter="petbeds" role="tab">Pet Beds</button>
+          <button type="button" class="filter-tab" data-filter="tshirtbags" role="tab">T-Shirt Bags</button>
+          <button type="button" class="filter-tab" data-filter="pouches" role="tab">Pouches</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="products-grid" id="products-grid">
+          <!-- Card 1: Circular Braided Mat -->
+          <article class="product-card" data-category="mats">
+            <div class="card-media">
+              <img src="assets/upcycled_mat.jpg" alt="Braided Floor Mat from T-Shirts" class="product-image" loading="lazy">
+              <span class="card-tag">TOP ECO PICK</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 4-6 Old T-Shirts</span>
+                <span class="craft-time">4 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">Circular Braided Floor Mat</h3>
+              <p class="card-description">
+                Handwoven in circular concentric braids from upcycled cotton t-shirt ribbons. Super soft underfoot, naturally non-slip, and fully machine washable.
+              </p>
+              <div class="card-features">
+                <span>&bull; 36" Diameter</span>
+                <span>&bull; Washable</span>
+                <span>&bull; Zero Synthetic Fibers</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹349</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="mat">Order Floor Mat</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Patchwork Bed Sheet Quilt -->
+          <article class="product-card" data-category="sheets">
+            <div class="card-media">
+              <img src="assets/patchwork_bedsheet.jpg" alt="Handcrafted Patchwork Bed Sheet Quilt" class="product-image" loading="lazy">
+              <span class="card-tag">HEIRLOOM LUXURY</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 8-10 Shirts / Flannels</span>
+                <span class="craft-time">6 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">Minimalist Patchwork Bed Sheet</h3>
+              <p class="card-description">
+                Transform cherished cotton shirts, flannels, and linen kurtas into a breathtaking modern architectural patchwork bed sheet. Bio-washed for buttery softness.
+              </p>
+              <div class="card-features">
+                <span>&bull; Queen/Double Bed</span>
+                <span>&bull; 100% Organic Backing</span>
+                <span>&bull; Breathable</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹899</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="bed-sheet">Order Bed Sheet</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Artisan Sashiko Tote -->
+          <article class="product-card" data-category="totes">
+            <div class="card-media">
+              <img src="assets/tote_bag.jpg" alt="Artisan Sashiko Denim Tote Bag" class="product-image" loading="lazy">
+              <span class="card-tag">DENIM SPECIALIST</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 2 Jeans + 1 Tee</span>
+                <span class="craft-time">3 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">The Sashiko Denim Tote</h3>
+              <p class="card-description">
+                Handcrafted from vintage denim panels reinforced with Japanese Sashiko geometric running stitch, vegetable-tanned leather shoulder straps, and a soft cotton interior lining.
+              </p>
+              <div class="card-features">
+                <span>&bull; Inner Zipper Pocket</span>
+                <span>&bull; Solid Brass Rivets</span>
+                <span>&bull; 20kg Load Limit</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹249</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="sashiko-tote">Order Denim Tote</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Utility Pocket Crossbody Sling -->
+          <article class="product-card" data-category="pouches">
+            <div class="card-media">
+              <img src="assets/crossbody_pouch.jpg" alt="Utility Pocket Crossbody Sling Pouch" class="product-image" loading="lazy">
+              <span class="card-tag">COMPACT CARRY</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 1 Denim Pant / Jacket</span>
+                <span class="craft-time">2 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">Utility Pocket Crossbody Sling</h3>
+              <p class="card-description">
+                Repurposes the iconic back pockets and seam ridges of worn jeans into a weatherproof daily sling bag with solid brass zippers and an adjustable seatbelt webbing strap.
+              </p>
+              <div class="card-features">
+                <span>&bull; Heavy Duty YKK Zippers</span>
+                <span>&bull; Key D-Ring &amp; Card Slot</span>
+                <span>&bull; Adjustable Strap</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹299</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="crossbody-pouch">Order Crossbody</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Patchwork Cushion Covers (Set of 2) - USER REQUESTED -->
+          <article class="product-card" data-category="cushions">
+            <div class="card-media">
+              <img src="assets/upcycled_cushion_covers.jpg" alt="Patchwork Cushion Covers from Cotton Shirts" class="product-image" loading="lazy">
+              <span class="card-tag">LIVING ACCENT</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 3-4 Cotton Shirts</span>
+                <span class="craft-time">3 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">Patchwork Cushion Covers (Pair)</h3>
+              <p class="card-description">
+                Handcrafted 16"x16" square slipcovers piece-quilted from old shirts, flannels, and kurtas. Features hidden zip closures and piped contrast borders.
+              </p>
+              <div class="card-features">
+                <span>&bull; 16" x 16" Square Pair</span>
+                <span>&bull; Concealed YKK Zipper</span>
+                <span>&bull; Machine Washable</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹299</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="cushion">Order Cushion Pair</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Upcycled Cozy Pet Bed - USER REQUESTED -->
+          <article class="product-card" data-category="petbeds">
+            <div class="card-media">
+              <img src="assets/upcycled_pet_bed.jpg" alt="Cozy Upcycled Pet Bed from Denim and Flannel" class="product-image" loading="lazy">
+              <span class="card-tag">PET FAVORITE</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 6-8 T-Shirts / Jeans</span>
+                <span class="craft-time">4 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">Upcycled Cozy Pet Bed</h3>
+              <p class="card-description">
+                Durable orthopedic pet lounge with heavy denim walls and soft flannel mattress. Filled with sanitized shredded textile scraps.
+              </p>
+              <div class="card-features">
+                <span>&bull; 24" x 18" Cozy Size</span>
+                <span>&bull; Recycled Shredded Core</span>
+                <span>&bull; Washable Cover</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹599</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="petbed">Order Pet Bed</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7: Custom Graphic T-Shirt Bag - USER REQUESTED -->
+          <article class="product-card" data-category="tshirtbags">
+            <div class="card-media">
+              <img src="assets/custom_tshirt_bag.jpg" alt="Custom Graphic T-Shirt Bag" class="product-image" loading="lazy">
+              <span class="card-tag">GRAPHIC KEEPSAKE</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="garment-req">Needs: 2-3 Graphic Tees</span>
+                <span class="craft-time">2 Days Turnaround</span>
+              </div>
+              <h3 class="card-title">Custom Graphic T-Shirt Bag</h3>
+              <p class="card-description">
+                Preserves cherished band, college, or vintage t-shirt prints as double-stitched everyday carry totes and crossbody bags with heavy cotton webbing handles.
+              </p>
+              <div class="card-features">
+                <span>&bull; 14L Lightweight Carry</span>
+                <span>&bull; Reinforced Box Stitches</span>
+                <span>&bull; Front Print Focal</span>
+              </div>
+              <div class="card-footer">
+                <div class="price-block">
+                  <span class="price-label">Artisan Charge</span>
+                  <span class="price-val">₹229</span>
+                </div>
+                <button type="button" class="btn-card-order" data-style="tshirtbag">Order T-Shirt Bag</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Environmental Impact Calculator -->
+    <section class="section impact-section" id="impact">
+      <div class="section-container">
+        <div class="impact-card">
+          <div class="impact-header">
+            <span class="section-tag">RESOURCE CONSERVATION CALCULATOR</span>
+            <h2 class="impact-title">Calculate Your Water &amp; Carbon Savings</h2>
+            <p class="impact-desc">Move the sliders below to calculate the exact water and greenhouse gas emissions you save by upcycling instead of buying fast fashion.</p>
+          </div>
+
+          <div class="calculator-grid">
+            <!-- Sliders Column -->
+            <div class="sliders-col">
+              <!-- Slider 1: T-Shirts -->
+              <div class="calc-slider-box">
+                <div class="slider-head">
+                  <label for="slider-tees" class="slider-label">Old T-Shirts to Remake:</label>
+                  <span class="slider-value" id="val-tees">5</span>
+                </div>
+                <input type="range" id="slider-tees" min="1" max="25" value="5" class="calc-range">
+                <span class="slider-hint">Perfect for 1 Floor Mat or 2 Shopping Bags</span>
+              </div>
+
+              <!-- Slider 2: Denim Jeans -->
+              <div class="calc-slider-box">
+                <div class="slider-head">
+                  <label for="slider-jeans" class="slider-label">Worn Denim Jeans / Jackets:</label>
+                  <span class="slider-value" id="val-jeans">2</span>
+                </div>
+                <input type="range" id="slider-jeans" min="0" max="15" value="2" class="calc-range">
+                <span class="slider-hint">Converts into Sashiko Totes or Crossbody Slings</span>
+              </div>
+
+              <!-- Slider 3: Flannels & Shirts -->
+              <div class="calc-slider-box">
+                <div class="slider-head">
+                  <label for="slider-shirts" class="slider-label">Shirts, Kurtas &amp; Linens:</label>
+                  <span class="slider-value" id="val-shirts">4</span>
+                </div>
+                <input type="range" id="slider-shirts" min="0" max="20" value="4" class="calc-range">
+                <span class="slider-hint">Converts into Patchwork Bed Sheet Quilt</span>
+              </div>
+            </div>
+
+            <!-- Metrics Column -->
+            <div class="metrics-col">
+              <div class="metrics-grid">
+                <div class="metric-box">
+                  <div class="metric-icon-wrap water-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                  </div>
+                  <div class="metric-val" id="metric-water">41,500 L</div>
+                  <div class="metric-title">Clean Water Saved</div>
+                  <div class="metric-sub">Equivalent to 450 full showers</div>
+                </div>
+
+                <div class="metric-box">
+                  <div class="metric-icon-wrap carbon-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                  </div>
+                  <div class="metric-val" id="metric-carbon">51.2 kg</div>
+                  <div class="metric-title">CO2 Emissions Avoided</div>
+                  <div class="metric-sub">Equivalent to planting 3 trees</div>
+                </div>
+
+                <div class="metric-box">
+                  <div class="metric-icon-wrap waste-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </div>
+                  <div class="metric-val" id="metric-waste">4.8 kg</div>
+                  <div class="metric-title">Landfill Diverted</div>
+                  <div class="metric-sub">Zero cloth burnt or discarded</div>
+                </div>
+
+                <div class="metric-box">
+                  <div class="metric-icon-wrap points-glow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  </div>
+                  <div class="metric-val" id="metric-points">480 pts</div>
+                  <div class="metric-title">Reward Thread Points</div>
+                  <div class="metric-sub">Earn ₹100 off your next order</div>
+                </div>
+              </div>
+
+              <button type="button" class="btn-lock-impact" onclick="document.getElementById('order-section').scrollIntoView({behavior:'smooth'})">
+                Lock In This Eco Plan &amp; Schedule Pickup
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section (User specifically requested "abouts use") -->
+    <section class="section about-section" id="about-us">
+      <div class="section-container">
+        <div class="about-grid">
+          <div class="about-content">
+            <span class="section-tag">ABOUT US &bull; OUR MANIFESTO</span>
+            <h2 class="section-title">Why Throw Away Old Clothes When They Can Become Heirlooms?</h2>
+            <p class="about-lead">
+              In India and around the world, every family has stacks of old t-shirts, jeans that don't fit anymore, or beloved shirts that are just slightly torn at the collar.
+            </p>
+            <p class="about-text">
+              <strong>Rewear was created to make upcycling effortless and dignified.</strong> You don't need a tailor down the street or expensive bespoke studios. We pick up your old garments from your home, deep-clean them with hospital-grade ozone, and our master tailors stitch them into durable <strong>braided floor mats</strong>, <strong>luxury patchwork bed sheets</strong>, and <strong>everyday shopping bags</strong>.
+            </p>
+            
+            <div class="about-badges">
+              <div class="badge-item">
+                <svg viewBox="0 0 20 20" fill="#f59e0b"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>Fair artisan wages &bull; Every tailor credited by name</span>
+              </div>
+              <div class="badge-item">
+                <svg viewBox="0 0 20 20" fill="#f59e0b"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>Flat honest pricing between ₹200 to ₹1000</span>
+              </div>
+              <div class="badge-item">
+                <svg viewBox="0 0 20 20" fill="#f59e0b"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span>100% Zero-Landfill Cutting guarantee</span>
+              </div>
+            </div>
+
+            <div class="about-action">
+              <button type="button" class="btn-about-deepdive" id="open-about-modal-btn">
+                Read Our Full Circular Manifesto &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div class="about-cards-col">
+            <div class="atelier-stat-card">
+              <div class="stat-big">48,240+</div>
+              <div class="stat-name">Garments Collected &amp; Remade</div>
+              <p class="stat-desc">Prevented from going into landfills or toxic textile incineration.</p>
+            </div>
+
+            <div class="atelier-stat-card">
+              <div class="stat-big">1,240+</div>
+              <div class="stat-name">Floor Mats &amp; Bed Sheets Woven</div>
+              <p class="stat-desc">Loving homes now enjoy cozy, memory-filled zero-waste textiles.</p>
+            </div>
+
+            <div class="atelier-quote-card">
+              <p class="quote-text">
+                &ldquo;You don't need to throw out the shirts that hold your sweetest memories. Hand them to us, and we will sew them into your favorite daily mat or tote.&rdquo;
+              </p>
+              <div class="quote-author">
+                <span class="author-name">&mdash; Maya Sharma</span>
+                <span class="author-title">Chief Artisan &amp; Master Tailor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Track An Existing Order Bar -->
+    <section class="section track-bar-section">
+      <div class="section-container">
+        <div class="track-bar-card">
+          <div class="track-info">
+            <h3 class="track-title">Already sent your clothes for upcycling?</h3>
+            <p class="track-desc">Enter your Rewear Tracking Code (e.g. RW-2026-8942) to check sanitization, cutting, and stitching progress.</p>
+          </div>
+          <form class="track-form" id="track-order-form">
+            <input type="text" id="track-code-input" placeholder="e.g. RW-2026-8942" class="track-input" required>
+            <button type="submit" class="btn-track-submit">Track Order</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-link">
+            <div class="brand-logo-mark small">
+              <svg viewBox="0 0 44 44" class="atelier-brand-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="40" height="40" rx="12" fill="#18120D" stroke="rgba(240, 160, 75, 0.4)" stroke-width="1.2"/>
+                <path d="M13 26C13 20.8 17.2 17 22 17C26.8 17 31 12.8 31 8" stroke="#F2A444" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M13 18C13 23.2 17.2 27 22 27C26.8 27 31 31.2 31 36" stroke="#E88038" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="13" cy="18" r="3.2" stroke="#F7C86E" stroke-width="2" fill="#18120D"/>
+                <circle cx="31" cy="26" r="3.2" stroke="#F7C86E" stroke-width="2" fill="#18120D"/>
+              </svg>
+            </div>
+            <span class="brand-title">REWEAR</span>
+          </div>
+          <p class="footer-tagline">
+            The circular atelier remaking worn clothes into modern floor mats, patchwork bed sheets, and everyday tote bags.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Transformations</h4>
+          <a href="#order-section" class="footer-link">Handwoven Floor Mats (₹349)</a>
+          <a href="#order-section" class="footer-link">Patchwork Bed Sheets (₹899)</a>
+          <a href="#order-section" class="footer-link">Denim Tote Bags (₹249)</a>
+          <a href="#order-section" class="footer-link">Market Shopping Bags (₹289)</a>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <a href="#about-us" class="footer-link">About Us &bull; Story</a>
+          <a href="#impact" class="footer-link">Environmental Savings</a>
+          <a href="#top-nav" class="footer-link" id="footer-profile-link">Customer Profile</a>
+          <a href="#top-nav" class="footer-link" id="footer-login-link">Login &bull; Account</a>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Zero Waste Promise</h4>
+          <p class="footer-promise">
+            We pledge that 100% of received textiles are either transformed into your finished product or spun into structural batting. Zero grams to landfills. Tailoring charges guaranteed between ₹200 to ₹1000.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rewear Circular Atelier. All rights reserved.</p>
+        <div class="footer-legal">
+          <span>Terms of Remake</span>
+          <span>Doorstep Pickup Policy</span>
+          <span>Artisan Guarantee</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS (Full Working Order Wizard, Profile, Login & About Us)              -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. Full Interactive Upcycle Order Wizard Modal -->
+  <dialog class="app-dialog" id="order-wizard-dialog" aria-labelledby="wizard-title">
+    <div class="dialog-content wizard-box">
+      <button type="button" class="dialog-close-btn" id="close-order-dialog" aria-label="Close Order Wizard">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="wizard-header">
+        <div class="wizard-badge">CUSTOM REMAKE CONFIGURATOR</div>
+        <h2 id="wizard-title" class="wizard-title">Configure Your Upcycle Order</h2>
+        <p class="wizard-desc">Customize your transformation. We will send a courier to collect your clothes.</p>
+        
+        <!-- Step Progress Indicator -->
+        <div class="wizard-steps-indicator">
+          <div class="step-indicator-item active" data-step="1">
+            <span class="step-num">1</span>
+            <span class="step-text">Garments</span>
+          </div>
+          <div class="step-indicator-item" data-step="2">
+            <span class="step-num">2</span>
+            <span class="step-text">Creation</span>
+          </div>
+          <div class="step-indicator-item" data-step="3">
+            <span class="step-num">3</span>
+            <span class="step-text">Customization</span>
+          </div>
+          <div class="step-indicator-item" data-step="4">
+            <span class="step-num">4</span>
+            <span class="step-text">Pickup &amp; Confirm</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="order-wizard-form" class="wizard-form">
+        <!-- STEP 1: Garment Intake -->
+        <div class="wizard-step active" id="wizard-step-1">
+          <h3 class="step-section-heading">Step 1: What Clothes Are You Giving?</h3>
+          <p class="step-section-sub">Select the fabrics you will pack into your pickup parcel:</p>
+
+          <div class="garment-choice-grid">
+            <label class="garment-check-card">
+              <input type="checkbox" name="garment_type" value="Old T-Shirts" checked>
+              <div class="check-card-body">
+                <div class="check-title">Old / Graphic T-Shirts (4-6 items)</div>
+                <div class="check-sub">Best for braided floor mats &amp; shopping bags</div>
+              </div>
+            </label>
+
+            <label class="garment-check-card">
+              <input type="checkbox" name="garment_type" value="Vintage Denim Jeans" checked>
+              <div class="check-card-body">
+                <div class="check-title">Worn Denim Jeans (1-2 pairs)</div>
+                <div class="check-sub">Best for structured tote bags &amp; slings</div>
+              </div>
+            </label>
+
+            <label class="garment-check-card">
+              <input type="checkbox" name="garment_type" value="Cotton Shirts & Linens">
+              <div class="check-card-body">
+                <div class="check-title">Cotton Shirts, Kurtas &amp; Flannels (8-10 items)</div>
+                <div class="check-sub">Best for luxury patchwork bed sheets</div>
+              </div>
+            </label>
+
+            <label class="garment-check-card">
+              <input type="checkbox" name="garment_type" value="Mixed Fabrics">
+              <div class="check-card-body">
+                <div class="check-title">Mixed Fabrics &amp; Linens</div>
+                <div class="check-sub">We sort, sanitize and match fabric weights</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="garment-count" class="form-label">Approximate Number of Garments</label>
+              <select id="garment-count" class="form-select">
+                <option value="2-4">2 to 4 items (1 Tote Bag or Crossbody)</option>
+                <option value="4-6" selected>4 to 6 items (1 Braided Floor Mat or 2 Totes)</option>
+                <option value="8-12">8 to 12 items (1 Patchwork Bed Sheet Quilt)</option>
+                <option value="15+">15+ items (Full Suite: Mat + Bed Sheet + 2 Bags)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="garment-color-notes" class="form-label">Special Notes / Sentimental Cuts</label>
+              <input type="text" id="garment-color-notes" class="form-input" placeholder="e.g. Keep graphic on front, use red flannel for center">
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Choose Target Creation -->
+        <div class="wizard-step" id="wizard-step-2">
+          <h3 class="step-section-heading">Step 2: Choose Your Target Transformation</h3>
+          <p class="step-section-sub">Select what you want made (all prices strictly between ₹200 - ₹1000):</p>
+
+          <div class="creation-choice-grid">
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Braided Floor Mat (3ft)" data-price="349" checked>
+              <div class="creation-card-inner">
+                <div class="creation-name">Handwoven Floor Mat / Rug (3ft)</div>
+                <div class="creation-fee">₹349 Tailoring Charge</div>
+                <p class="creation-desc">Thick circular braided rug from 4-6 t-shirts. Machine washable.</p>
+              </div>
+            </label>
+
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Patchwork Bed Sheet Quilt" data-price="899">
+              <div class="creation-card-inner">
+                <div class="creation-name">Luxury Patchwork Bed Sheet (Queen)</div>
+                <div class="creation-fee">₹899 Tailoring Charge</div>
+                <p class="creation-desc">Double bed quilt made from 8-10 cotton shirts/flannels. Bio-washed.</p>
+              </div>
+            </label>
+
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Artisan Denim Tote Bag" data-price="249">
+              <div class="creation-card-inner">
+                <div class="creation-name">Artisan Denim Tote Bag</div>
+                <div class="creation-fee">₹249 Tailoring Charge</div>
+                <p class="creation-desc">Sturdy everyday bag from 1 jeans or 2 t-shirts. Leather handles.</p>
+              </div>
+            </label>
+
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Patchwork Cushion Covers (Pair)" data-price="299">
+              <div class="creation-card-inner">
+                <div class="creation-name">Patchwork Cushion Covers (Pair)</div>
+                <div class="creation-fee">₹299 Tailoring Charge</div>
+                <p class="creation-desc">Quilted 16"x16" cushion pair with hidden zippers from 3-4 shirts.</p>
+              </div>
+            </label>
+
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Upcycled Cozy Pet Bed" data-price="599">
+              <div class="creation-card-inner">
+                <div class="creation-name">Upcycled Cozy Pet Bed</div>
+                <div class="creation-fee">₹599 Tailoring Charge</div>
+                <p class="creation-desc">Orthopedic pet bed with denim walls and soft flannel core from 6-8 clothes.</p>
+              </div>
+            </label>
+
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Custom Graphic T-Shirt Bag" data-price="229">
+              <div class="creation-card-inner">
+                <div class="creation-name">Custom Graphic T-Shirt Bag</div>
+                <div class="creation-fee">₹229 Tailoring Charge</div>
+                <p class="creation-desc">Everyday sling/tote highlighting your favorite tee prints from 2-3 t-shirts.</p>
+              </div>
+            </label>
+
+            <label class="creation-radio-card">
+              <input type="radio" name="target_creation" value="Grocery Shopping Bag" data-price="289">
+              <div class="creation-card-inner">
+                <div class="creation-name">Grocery Market Shopping Bag</div>
+                <div class="creation-fee">₹289 Tailoring Charge</div>
+                <p class="creation-desc">Heavyweight 25kg carrier with reinforced webbing from 3-4 t-shirts.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 3: Artisan Customization -->
+        <div class="wizard-step" id="wizard-step-3">
+          <h3 class="step-section-heading">Step 3: Artisan Stitching &amp; Details</h3>
+          <p class="step-section-sub">Customize the stitching and hardware finish:</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="stitch-style" class="form-label">Stitching Style</label>
+              <select id="stitch-style" class="form-select">
+                <option value="Sashiko Golden Contrast" selected>Sashiko Golden Contrast Thread</option>
+                <option value="Clean Minimalist Seams">Clean Minimalist Concealed Seams</option>
+                <option value="Raw Distressed Vintage Edges">Raw Distressed Vintage Edges</option>
+                <option value="Traditional Kantha Quilted Stitch">Traditional Kantha Quilted Stitch</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="handle-type" class="form-label">Straps / Border Trim</label>
+              <select id="handle-type" class="form-select">
+                <option value="Reinforced Leather Straps" selected>Reinforced Tan Leather Straps</option>
+                <option value="Recycled Cotton Webbing">Recycled Cotton Webbing</option>
+                <option value="Braided Fabric Border">Braided Fabric Border</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="custom-monogram" class="form-label">Custom Laser-Cut Name Tag / Monogram (Free)</label>
+            <input type="text" id="custom-monogram" class="form-input" placeholder="e.g. 'AARAV S. &bull; REWEAR 2026' or Family Initials">
+          </div>
+        </div>
+
+        <!-- STEP 4: Pickup Details & Summary -->
+        <div class="wizard-step" id="wizard-step-4">
+          <h3 class="step-section-heading">Step 4: Doorstep Pickup Details</h3>
+          <p class="step-section-sub">Courier picks up from your home and returns the finished piece:</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="sender-name" class="form-label">Full Name <span class="required-star">*</span></label>
+              <input type="text" id="sender-name" class="form-input" placeholder="e.g. Aarav Sharma" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="sender-phone" class="form-label">Phone for Courier SMS <span class="required-star">*</span></label>
+              <input type="tel" id="sender-phone" class="form-input" placeholder="10-digit mobile number" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="sender-address" class="form-label">Doorstep Pickup Address <span class="required-star">*</span></label>
+            <input type="text" id="sender-address" class="form-input" placeholder="House/Flat No., Building, Landmark, City &amp; PIN code" required autocomplete="street-address">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pickup-date" class="form-label">Preferred Pickup Date</label>
+              <input type="date" id="pickup-date" class="form-input" value="2026-10-06" required>
+            </div>
+            <div class="form-group">
+              <label for="payment-method" class="form-label">Payment Method</label>
+              <select id="payment-method" class="form-select">
+                <option value="Cash on Delivery / Pickup" selected>Cash on Pickup (Pay when courier collects)</option>
+                <option value="UPI / Online QR">UPI / QR Code on Pickup</option>
+                <option value="Online Card / Net Banking">Card / Net Banking (Instant Payment)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Order Summary Card in Rupees -->
+          <div class="wizard-summary-card">
+            <div class="summary-line">
+              <span>Selected Creation:</span>
+              <strong id="summary-creation-name">Handwoven Floor Mat / Rug (3ft)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Doorstep Pickup &amp; Return Delivery:</span>
+              <strong class="text-free">FREE (Included)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Hospital-Grade Ozone Sanitization:</span>
+              <strong class="text-free">FREE (Included)</strong>
+            </div>
+            <div class="summary-line total-line">
+              <span>Total Charge (Rupees):</span>
+              <strong class="total-price" id="summary-total-price">₹349</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wizard Navigation Footer -->
+        <div class="wizard-footer">
+          <button type="button" class="btn-wizard-back" id="wizard-prev-btn" style="display: none;">Back</button>
+          <div class="wizard-spacer"></div>
+          <button type="button" class="btn-wizard-next" id="wizard-next-btn">Next: Select Creation &rarr;</button>
+          <button type="submit" class="btn-wizard-confirm" id="wizard-submit-btn" style="display: none;">
+            Confirm &amp; Schedule Doorstep Pickup
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- 2. Customer Profile Dashboard Modal -->
+  <dialog class="app-dialog" id="profile-dialog" aria-labelledby="profile-title">
+    <div class="dialog-content profile-box">
+      <button type="button" class="dialog-close-btn" id="close-profile-dialog" aria-label="Close Profile">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="profile-header">
+        <div class="profile-hero-info">
+          <div class="profile-large-avatar">
+            <span id="profile-avatar-letters">RW</span>
+            <span class="active-badge" title="Active Circular Member"></span>
+          </div>
+          <div>
+            <h2 id="profile-title" class="profile-user-name">Guest Member</h2>
+            <div class="profile-member-rank">
+              <span class="rank-chip">Circular Member</span>
+              <span class="location-chip" id="profile-user-email">Sign in or place an order to track</span>
+              <button type="button" class="btn-profile-signout" id="profile-signout-btn" style="display: none;">Sign Out</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-quick-stats">
+          <div class="pstat-item">
+            <div class="pstat-val" id="profile-garment-count">0</div>
+            <div class="pstat-name">Garments Upcycled</div>
+          </div>
+          <div class="pstat-item">
+            <div class="pstat-val">34,500 L</div>
+            <div class="pstat-name">Water Saved</div>
+          </div>
+          <div class="pstat-item">
+            <div class="pstat-val">480 pts</div>
+            <div class="pstat-name">Thread Points</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Tabs -->
+      <div class="profile-tabs">
+        <button type="button" class="ptab active" data-ptab="orders">Active Orders &amp; Tracking</button>
+        <button type="button" class="ptab" data-ptab="history">Completed Gallery</button>
+        <button type="button" class="ptab" data-ptab="rewards">Thread Rewards (₹)</button>
+      </div>
+
+      <div class="profile-tab-content">
+        <!-- Active Orders Tab -->
+        <div class="ptab-panel active" id="ptab-orders">
+          <div class="active-order-card" id="active-order-container">
+            <div class="order-top-row">
+              <div>
+                <span class="order-id-label">Tracking Code:</span>
+                <strong class="order-id" id="profile-order-id">RW-2026-8942</strong>
+              </div>
+              <span class="order-status-badge status-in-progress" id="profile-order-status">Artisan Weaving</span>
+            </div>
+
+            <!-- 4 Stage Visual Progress Stepper -->
+            <div class="order-progress-stepper">
+              <div class="step-node done">
+                <div class="node-circle">&check;</div>
+                <div class="node-label">Doorstep Pickup</div>
+              </div>
+              <div class="step-connector done"></div>
+              <div class="step-node done">
+                <div class="node-circle">&check;</div>
+                <div class="node-label">Ozone Sanitization</div>
+              </div>
+              <div class="step-connector active"></div>
+              <div class="step-node active">
+                <div class="node-circle">3</div>
+                <div class="node-label">Handcraft Weaving</div>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-node">
+                <div class="node-circle">4</div>
+                <div class="node-label">Door Delivery</div>
+              </div>
+            </div>
+
+            <div class="order-details-box">
+              <div class="detail-row">
+                <span>Transformation Item:</span>
+                <strong id="profile-item-name">Handwoven Braided Floor Mat (3ft)</strong>
+              </div>
+              <div class="detail-row">
+                <span>Garments in Batch:</span>
+                <span>5 Vintage T-Shirts (Red, Blue, Navy)</span>
+              </div>
+              <div class="detail-row">
+                <span>Charge Amount:</span>
+                <strong class="text-amber">₹349 (Paid on Pickup)</strong>
+              </div>
+              <div class="detail-row">
+                <span>Estimated Door Delivery:</span>
+                <strong class="text-emerald">Thursday, Oct 8, 2026</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed Gallery Tab -->
+        <div class="ptab-panel" id="ptab-history">
+          <div class="history-grid">
+            <div class="history-card">
+              <img src="assets/upcycled_mat.jpg" alt="Completed Mat" class="history-thumb">
+              <div class="history-body">
+                <strong>Circular Floor Mat</strong>
+                <span>Completed Sept 14, 2026</span>
+                <span class="impact-chip">₹349 &bull; Saved 5,400L Water</span>
+              </div>
+            </div>
+            <div class="history-card">
+              <img src="assets/tote_bag.jpg" alt="Completed Tote" class="history-thumb">
+              <div class="history-body">
+                <strong>Denim Sashiko Tote</strong>
+                <span>Completed Aug 28, 2026</span>
+                <span class="impact-chip">₹249 &bull; Saved 7,600L Water</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thread Rewards Tab -->
+        <div class="ptab-panel" id="ptab-rewards">
+          <div class="rewards-box">
+            <div class="rewards-balance">
+              <span>Your Reward Balance:</span>
+              <strong class="balance-pts">480 Thread Points</strong>
+            </div>
+            <div class="perks-list">
+              <div class="perk-item">
+                <div>
+                  <strong>₹100 Off Any Bed Sheet Order</strong>
+                  <p>Redeem 200 pts for instant ₹100 discount.</p>
+                </div>
+                <button type="button" class="btn-redeem" onclick="alert('Redeemed! Code SHEET100 applied to your account.')">Redeem (200 pts)</button>
+              </div>
+              <div class="perk-item">
+                <div>
+                  <strong>Free Leather Monogramming</strong>
+                  <p>Redeem 150 pts for laser-stitched tag on any bag or mat.</p>
+                </div>
+                <button type="button" class="btn-redeem" onclick="alert('Redeemed! Free monogram active.')">Redeem (150 pts)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- 3. Working Login / Sign Up Modal -->
+  <dialog class="app-dialog" id="login-dialog" aria-labelledby="login-title">
+    <div class="dialog-content login-box">
+      <button type="button" class="dialog-close-btn" id="close-login-dialog" aria-label="Close Login">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+        <div class="login-header-group text-center">
+          <div class="brand-logo-mark small mx-auto">
+            <svg viewBox="0 0 44 44" class="atelier-brand-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="40" height="40" rx="12" fill="#18120D" stroke="rgba(240, 160, 75, 0.4)" stroke-width="1.2"/>
+              <path d="M13 26C13 20.8 17.2 17 22 17C26.8 17 31 12.8 31 8" stroke="#F2A444" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M13 18C13 23.2 17.2 27 22 27C26.8 27 31 31.2 31 36" stroke="#E88038" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="13" cy="18" r="3.2" stroke="#F7C86E" stroke-width="2" fill="#18120D"/>
+              <circle cx="31" cy="26" r="3.2" stroke="#F7C86E" stroke-width="2" fill="#18120D"/>
+            </svg>
+          </div>
+          <h2 id="login-title" class="login-title">Account Login &bull; Rewear</h2>
+          <p class="login-sub">Sign in to track orders, manage clothes pickups, and view environmental savings.</p>
+        </div>
+
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="login-name" class="form-label">Full Name</label>
+          <input type="text" id="login-name" class="form-input" placeholder="Your Name (e.g. Aarav Sharma)" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email Address <span class="required-star">*</span></label>
+          <input type="email" id="login-email" class="form-input" placeholder="name@domain.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password <span class="required-star">*</span></label>
+          <input type="password" id="login-password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-login-submit" id="login-submit-button">Sign In to Rewear</button>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- 5. Order Placed Success Confirmation Dialog -->
+  <dialog class="app-dialog" id="order-placed-dialog" aria-labelledby="order-success-title">
+    <div class="dialog-content order-success-box">
+      <button type="button" class="dialog-close-btn" id="close-placed-dialog" aria-label="Close Order Confirmation">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="success-icon-badge">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#F7C86E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <span class="section-tag text-center mx-auto">ORDER CONFIRMED &bull; DOORSTEP PICKUP BOOKED</span>
+      <h2 id="order-success-title" class="dialog-title text-center">Your Remake Order is Booked!</h2>
+      <p class="dialog-sub text-center">Our eco-courier will collect your old clothes from your doorstep.</p>
+
+      <div class="receipt-summary-card">
+        <div class="receipt-row">
+          <span class="receipt-label">Order Code:</span>
+          <strong class="receipt-code" id="receipt-order-id">#RW-IN-8421</strong>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Customer Name:</span>
+          <strong class="receipt-val" id="receipt-customer-name">—</strong>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Contact Number:</span>
+          <span class="receipt-val" id="receipt-customer-phone">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Doorstep Address:</span>
+          <span class="receipt-val" id="receipt-customer-address">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Payment Mode:</span>
+          <strong class="receipt-payment-tag" id="receipt-payment-mode">Cash on Pickup (COD)</strong>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Clothes to Prepare:</span>
+          <strong class="receipt-amber-val" id="receipt-clothes-needed">6 to 9 Garments</strong>
+        </div>
+        <div class="receipt-row total-receipt">
+          <span class="receipt-total-label">Total Tailoring Fee:</span>
+          <strong class="receipt-total-price" id="receipt-total-charge">₹598</strong>
+        </div>
+      </div>
+
+      <div class="order-placed-actions">
+        <button type="button" class="btn-order-primary w-full" id="btn-view-tracking-profile">
+          Track Order Live in Profile &rarr;
+        </button>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="app-dialog" id="about-manifesto-dialog" aria-labelledby="manifesto-title">
+    <div class="dialog-content manifesto-box">
+      <button type="button" class="dialog-close-btn" id="close-about-dialog" aria-label="Close About">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <span class="section-tag">ABOUT US &bull; ZERO TEXTILE WASTE</span>
+      <h2 id="manifesto-title" class="manifesto-title">The Rewear Philosophy: Old Clothes to Modern Life</h2>
+      
+      <div class="manifesto-body">
+        <p>
+          Every home in our neighborhoods has clothes that sit unworn: t-shirts with faded graphic prints, jeans that wore through the knee, or shirts with missing buttons.
+        </p>
+        <p>
+          <strong>Rewear gives them a second life.</strong> We don't discard them or downcycle them into industrial stuffing. We deconstruct them by hand, deep-sanitize them in ozone chambers, and turn them into:
+        </p>
+        <ul>
+          <li><strong>1. Braided Floor Mats:</strong> Circular rugs hand-braided from cotton jersey ribbons that bring warmth to any room (Charge: ₹349).</li>
+          <li><strong>2. Patchwork Bed Sheets &amp; Quilts:</strong> Soft double-bed quilts made from 8-10 cotton shirts and flannels (Charge: ₹899).</li>
+          <li><strong>3. Everyday Carry Bags:</strong> Durable tote bags and shopping bags that replace thousands of single-use plastic bags (Charge: ₹249 - ₹289).</li>
+        </ul>
+        <p>
+          All our tailoring charges are capped strictly between ₹200 and ₹1000 so that circular fashion is affordable for every single household.
+        </p>
+      </div>
+
+      <div class="manifesto-footer">
+        <button type="button" class="btn-order-primary" onclick="document.getElementById('about-manifesto-dialog').close(); document.getElementById('order-section').scrollIntoView({behavior:'smooth'})">
+          Order Your Remake Now
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- JavaScript Application Bundle -->
+  <script src="app.js"></script>
+</body>
+</html>
